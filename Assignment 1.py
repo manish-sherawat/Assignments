@@ -1,5 +1,5 @@
 # Print statement with multiple objects
-print("Name:", "Manish Sherawat", "Age:", 21)
+print("Name:", "Manish", "Age:", 21)
 
 # Print statement with separator
 print("Python", "Java", "C++", sep=" | ")
@@ -17,7 +17,7 @@ print("Hello,", name + "! Welcome to Python.")
 
 Output:-
 
-Name: Manish Age: 20
+Name: Manish Age: 21
 Python | Java | C++
 Hello World!
 Hello, Manish Sherawat! Welcome to Python.
