@@ -1,0 +1,195 @@
+
+import React, { Component } from "react";
+
+// 1. Contact Form Component
+class ContactForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      email: "",
+      mobile: "",
+      address: ""
+    };
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    alert("Form submitted successfully!");
+  };
+
+  render() {
+    return (
+      <div>
+        <h2>Contact Form</h2>
+
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div>
+            <label>Mobile:</label>
+            <input
+              type="tel"
+              name="mobile"
+              value={this.state.mobile}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div>
+            <label>Address:</label>
+            <textarea
+              name="address"
+              value={this.state.address}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+
+// 2. Counter Class Component
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0
+    };
+  }
+
+  increment = () => {
+    this.setState({
+      count: this.state.count + 1
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <h2>Counter</h2>
+
+        <p>Current Count: {this.state.count}</p>
+
+        <button onClick={this.increment}>
+          Increment
+        </button>
+      </div>
+    );
+  }
+}
+
+
+// 3. UserProfile Class Component
+class UserProfile extends Component {
+  render() {
+    const { username, email, isAdmin } = this.props;
+
+    return (
+      <div>
+        <h2>User Profile</h2>
+
+        <p>Username: {username}</p>
+        <p>Email: {email}</p>
+        <p>Admin: {isAdmin ? "true" : "false"}</p>
+
+        {isAdmin ? (
+          <span>Role: Administrator</span>
+        ) : (
+          <span>Role: User</span>
+        )}
+      </div>
+    );
+  }
+}
+
+
+// Main App Component
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <ContactForm />
+
+        <hr />
+
+        <Counter />
+
+        <hr />
+
+        <UserProfile
+          username="John"
+          email="john@example.com"
+          isAdmin={true}
+        />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+### What this program does
+
+* ContactForm:** Creates fields for `name`, `email`, `mobile`, and `address`.
+* Counter:** Starts `count` at `0`. Every click on **Increment** increases it by `1`.
+* UserProfile:** Receives `username`, `email`, and `isAdmin` as props.
+* If `isAdmin` is `true`, it displays **Role: Administrator**.
+* If `isAdmin` is `false`, it displays **Role: User**.
+
+
+
+```text
+Contact Form
+Name:    [____________]
+Email:   [____________]
+Mobile:  [____________]
+Address: [____________]
+
+[Submit Button]
+
+
+Counter
+Current Count: 1
+[Increment Button]
+
+User Profile
+Username: John
+Email: manish@gamil.com.com
+Admin: true
+
+Role: Administrator
+
+
+
