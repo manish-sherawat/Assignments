@@ -1,0 +1,78 @@
+```jsx
+import { useState } from "react";
+
+function LongestSubarray() {
+  const [arrayInput, setArrayInput] = useState("10, 5, 2, 7, 1, 9");
+  const [k, setK] = useState(15);
+  const [result, setResult] = useState(null);
+
+  function findLongestSubarray(arr, k) {
+    let prefixSum = 0;
+    let maxLength = 0;
+    const firstIndex = new Map();
+
+    for (let i = 0; i < arr.length; i++) {
+      prefixSum += arr[i];
+
+      // Subarray from index 0 to i
+      if (prefixSum === k) {
+        maxLength = i + 1;
+      }
+
+      // Check if prefixSum - k appeared before
+      if (firstIndex.has(prefixSum - k)) {
+        const length = i - firstIndex.get(prefixSum - k);
+        maxLength = Math.max(maxLength, length);
+      }
+
+      // Store only the first occurrence
+      if (!firstIndex.has(prefixSum)) {
+        firstIndex.set(prefixSum, i);
+      }
+    }
+
+    return maxLength;
+  }
+
+  function handleCalculate() {
+    const arr = arrayInput
+      .split(",")
+      .map(Number)
+      .filter((num) => !isNaN(num));
+
+    setResult(findLongestSubarray(arr, Number(k)));
+  }
+
+  return (
+    <div>
+      <h2>Longest Subarray With Sum K</h2>
+
+      <input
+        type="text"
+        value={arrayInput}
+        onChange={(e) => setArrayInput(e.target.value)}
+        placeholder="Enter array"
+      />
+
+      <input
+        type="number"
+        value={k}
+        onChange={(e) => setK(e.target.value)}
+        placeholder="Enter K"
+      />
+
+      <button onClick={handleCalculate}>
+        Find Longest Subarray
+      </button>
+
+      {result !== null && (
+        <p>
+          Length of longest subarray: <strong>{result}</strong>
+        </p>
+      )}
+    </div>
+  );
+}
+
+export default LongestSubarray;
+```
